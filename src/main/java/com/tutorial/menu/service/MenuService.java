@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.UUID;
 
+import static com.tutorial.menu.constants.ErrorMessage.MENU_NOT_FOUND;
+
 @Service
 @RequiredArgsConstructor
 public class MenuService {
@@ -21,7 +23,16 @@ public class MenuService {
 
     public Menu getMenuById(String id) {
         return menuRepository.findById(UUID.fromString(id))
-                .orElseThrow(()-> new InvalidException("Menu not found"));
+                .orElseThrow(()-> new InvalidException(MENU_NOT_FOUND));
+    }
+
+    public Menu getMenuByName(String name) {
+        return menuRepository.findByName(name)
+                .orElseThrow(() -> new InvalidException(MENU_NOT_FOUND));
+    }
+
+    public List<Menu> getMenuByCategory(String category) {
+        return menuRepository.findByCategory(category);
     }
 
     public Menu createMenu(Menu menu) {

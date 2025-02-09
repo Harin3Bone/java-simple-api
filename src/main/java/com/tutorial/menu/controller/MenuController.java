@@ -35,6 +35,18 @@ public class MenuController {
         return menuService.getMenuById(id);
     }
 
+    @GetMapping("/name/{name}")
+    @ResponseStatus(HttpStatus.OK)
+    public Menu getMenuByName(@PathVariable String name) {
+        return menuService.getMenuByName(name);
+    }
+
+    @GetMapping("/category/{category}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Menu> getMenuByCategory(@PathVariable String category) {
+        return menuService.getMenuByCategory(category);
+    }
+
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public Menu createMenu(@RequestBody Menu menu) {
