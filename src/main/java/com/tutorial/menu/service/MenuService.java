@@ -1,6 +1,7 @@
 package com.tutorial.menu.service;
 
 import com.tutorial.menu.entity.Menu;
+import com.tutorial.menu.exception.InvalidException;
 import com.tutorial.menu.repository.MenuRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,8 @@ public class MenuService {
     }
 
     public Menu getMenuById(String id) {
-        return menuRepository.findById(UUID.fromString(id)).orElse(null);
+        return menuRepository.findById(UUID.fromString(id))
+                .orElseThrow(()-> new InvalidException("Menu not found"));
     }
 
     public Menu createMenu(Menu menu) {
@@ -28,14 +30,10 @@ public class MenuService {
 
     public Menu updateMenuById(String id, Menu menuEntity) {
         var menu = getMenuById(id);
-        try {
-            menu.setName(menuEntity.getName());
-            menu.setPrice(menuEntity.getPrice());
-            menu.setCategory(menuEntity.getCategory());
-            return menuRepository.save(menuEntity);
-        } catch (Exception e) {
-            throw new RuntimeException("Menu not found");
-        }
+        menu.setName(menuEntity.getName());
+        menu.setPrice(menuEntity.getPrice());
+        menu.setCategory(menuEntity.getCategory());
+        return menuRepository.save(menuEntity);
     }
 
     public void deleteMenuById(String id) {
