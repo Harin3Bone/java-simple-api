@@ -1,11 +1,11 @@
 package com.tutorial.menu.repository;
 
-import com.tutorial.menu.entity.MenuEntity;
+import com.tutorial.menu.entity.Menu;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
 @Repository
-public interface MenuRepository extends JpaRepository<MenuEntity, UUID> {
+public interface MenuRepository extends JpaRepository<Menu, UUID> {
 }
