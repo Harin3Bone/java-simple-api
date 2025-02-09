@@ -36,7 +36,9 @@ public class MenuService {
         return menuRepository.save(menuEntity);
     }
 
-    public void deleteMenuById(String id) {
-        menuRepository.deleteById(UUID.fromString(id));
+    public Menu deleteMenuById(String id) {
+        var menu = getMenuById(id);
+        menuRepository.deleteById(menu.getId());
+        return menu;
     }
 }
