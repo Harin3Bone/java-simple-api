@@ -2,17 +2,17 @@ package com.tutorial.menu.service;
 
 import com.tutorial.menu.entity.Menu;
 import com.tutorial.menu.repository.MenuRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class MenuService {
 
-    @Autowired
-    private MenuRepository menuRepository;
+    private final MenuRepository menuRepository;
 
     public List<Menu> getAllMenu() {
         return menuRepository.findAll();

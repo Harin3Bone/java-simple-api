@@ -2,7 +2,7 @@ package com.tutorial.menu.controller;
 
 import com.tutorial.menu.entity.Menu;
 import com.tutorial.menu.service.MenuService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +18,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/menu")
+@RequiredArgsConstructor
 public class MenuController {
 
-    @Autowired
-    private MenuService menuService;
+    private final MenuService menuService;
 
     @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
